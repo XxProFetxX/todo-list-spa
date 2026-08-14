@@ -1,0 +1,31 @@
+<section class="todo-list">
+  <h2>Mis tareas</h2>
+
+  <app-todo-form (createTodo)="onCreate($event)" />
+
+  <label class="overdue-toggle">
+    <input type="checkbox" [checked]="overdueOnly()" (change)="toggleOverdueOnly()" />
+    Mostrar solo vencidas
+  </label>
+
+  @if (errorMessage()) {
+    <p class="error-banner" role="alert">{{ errorMessage() }}</p>
+  }
+
+  @if (isLoading()) {
+    <p class="loading">Cargando tareas…</p>
+  } @else if (todos().length === 0) {
+    <p class="empty">No hay tareas para mostrar.</p>
+  } @else {
+    <ul class="todo-items">
+      @for (todo of todos(); track todo.id) {
+        <app-todo-item
+          [todo]="todo"
+          (toggle)="onToggle($event)"
+          (saveEdit)="onSaveEdit($event)"
+          (delete)="onDelete($event)"
+        />
+      }
+    </ul>
+  }
+</section>
