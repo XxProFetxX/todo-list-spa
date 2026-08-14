@@ -1,0 +1,21 @@
+<form class="todo-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="field">
+    <label for="title">Título</label>
+    <input id="title" type="text" formControlName="title" placeholder="¿Qué hay que hacer?" />
+    @if (titleControl.invalid && titleControl.touched) {
+      <p class="error">El título es obligatorio.</p>
+    }
+  </div>
+
+  <div class="field">
+    <label for="description">Descripción</label>
+    <textarea id="description" formControlName="description" placeholder="Opcional"></textarea>
+  </div>
+
+  <div class="field">
+    <label for="dueDate">Fecha de vencimiento</label>
+    <input id="dueDate" type="date" formControlName="dueDate" />
+  </div>
+
+  <button type="submit">Agregar tarea</button>
+</form>

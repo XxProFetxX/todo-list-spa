@@ -1,0 +1,88 @@
+.todo-item {
+  list-style: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.todo-item.overdue {
+  border-color: #d33;
+  background-color: #fdeeee;
+}
+
+.todo-item.completed .todo-title {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.todo-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.todo-title {
+  font-weight: 600;
+}
+
+.todo-description {
+  margin: 0.35rem 0 0;
+  color: #555;
+}
+
+.todo-due-date {
+  margin: 0.35rem 0 0;
+  font-size: 0.875rem;
+  color: #333;
+}
+
+.overdue .todo-due-date,
+.overdue-badge {
+  color: #d33;
+  font-weight: 600;
+}
+
+.overdue-badge {
+  margin-left: 0.35rem;
+  border: 1px solid #d33;
+  border-radius: 4px;
+  padding: 0 0.35rem;
+}
+
+.todo-actions {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.todo-actions button {
+  cursor: pointer;
+}
+
+.todo-actions button.danger {
+  color: #d33;
+  border-color: #d33;
+}
+
+.confirm-delete {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+}
+
+.todo-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.todo-edit-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.875rem;
+}

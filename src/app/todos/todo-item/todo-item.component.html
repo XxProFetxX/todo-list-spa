@@ -1,0 +1,64 @@
+<li class="todo-item" [class.overdue]="todo().overdue" [class.completed]="todo().completed">
+  @if (!isEditing()) {
+    <div class="todo-view">
+      <label class="todo-check">
+        <input
+          type="checkbox"
+          [checked]="todo().completed"
+          (change)="onToggle()"
+          aria-label="Marcar como completada"
+        />
+        <span class="todo-title">{{ todo().title }}</span>
+      </label>
+
+      @if (todo().description) {
+        <p class="todo-description">{{ todo().description }}</p>
+      }
+
+      @if (todo().dueDate) {
+        <p class="todo-due-date">
+          Vence: {{ todo().dueDate }}
+          @if (todo().overdue) {
+            <span class="overdue-badge">Vencida</span>
+          }
+        </p>
+      }
+
+      <div class="todo-actions">
+        <button type="button" (click)="startEdit()">Editar</button>
+
+        @if (!isConfirmingDelete()) {
+          <button type="button" class="danger" (click)="requestDelete()">Eliminar</button>
+        } @else {
+          <span class="confirm-delete">
+            ¿Confirmar eliminación?
+            <button type="button" class="danger" (click)="confirmDelete()">Sí</button>
+            <button type="button" (click)="cancelDelete()">No</button>
+          </span>
+        }
+      </div>
+    </div>
+  } @else {
+    <form class="todo-edit-form" (ngSubmit)="confirmEdit()">
+      <label>
+        Título
+        <input type="text" name="editTitle" [(ngModel)]="editTitle" required />
+      </label>
+
+      <label>
+        Descripción
+        <textarea name="editDescription" [(ngModel)]="editDescription"></textarea>
+      </label>
+
+      <label>
+        Fecha de vencimiento
+        <input type="date" name="editDueDate" [(ngModel)]="editDueDate" />
+      </label>
+
+      <div class="todo-actions">
+        <button type="submit">Guardar</button>
+        <button type="button" (click)="cancelEdit()">Cancelar</button>
+      </div>
+    </form>
+  }
+</li>
